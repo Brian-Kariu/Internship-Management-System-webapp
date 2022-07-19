@@ -1,0 +1,9 @@
+.searchbar {
+    display: flex;
+    justify-content: center;
+}
+
+.searchbox {
+    display: flex;
+    margin : 2% 30% 2%;
+}
