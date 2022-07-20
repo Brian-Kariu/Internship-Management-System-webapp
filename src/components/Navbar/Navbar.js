@@ -15,6 +15,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -120,8 +121,16 @@ export default function PrimarySearchAppBar() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
+        <IconButton size="large" aria-label="show 2 new mails" color="inherit">
+          <Badge badgeContent={2} color="error">
+            <MenuBookIcon />
+          </Badge>
+        </IconButton>
+        <p>LogBook</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton size="large" aria-label="show 2 new mails" color="inherit">
+          <Badge badgeContent={2} color="error">
             <MailIcon />
           </Badge>
         </IconButton>
@@ -173,7 +182,7 @@ export default function PrimarySearchAppBar() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            IMS
           </Typography>
           <Search>
             <SearchIconWrapper>

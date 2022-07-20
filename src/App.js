@@ -1,14 +1,13 @@
 import './App.css';
-import Jobs from './components/Content/Jobs';
 import PrimarySearchAppBar from './components/Navbar/Navbar';
-import SearchInput from './components/Content/SearchInput'
+import ProfileForm from './components/Content/Profile';
+
 
 function App() {
   return (
     <div>
       <PrimarySearchAppBar />
-      <SearchInput />
-      <Jobs />
+      <ProfileForm />
     </div>
   );
 }

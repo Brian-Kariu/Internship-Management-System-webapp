@@ -1,0 +1,9 @@
+.content {
+    margin: 5% 10% 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.details {
+    margin: 5% 10% 5%;
+}

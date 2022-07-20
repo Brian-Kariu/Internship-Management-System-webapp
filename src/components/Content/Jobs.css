@@ -7,5 +7,7 @@
 
 .job {
     display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     margin: 1% 0% 1%;
 }
