@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import { Box } from "@mui/system";
 import { Button, Paper } from "@mui/material";
-import "./Profile.css";
+import "./ProfileForm.css";
 import{ useState, useEffect } from "react";
 import axios from 'axios'
 

@@ -20,7 +20,7 @@ function Jobs() {
     <div>
       {jobs.map(job =>
         <CardContent className="job">
-          <Box sx={{ my: 3, mx: 2 }}>
+          <Box sx={{ my: 3, mx: 2 }} color="black">
             <Grid container alignItems="center">
               <Grid item xs>
                 <Typography gutterBottom variant="h4" component="div">
