@@ -14,10 +14,10 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import { useNavigate } from 'react-router-dom';
 
 
-const cookies = new Cookies();
-
+const cookies = new Cookies()
 function Copyright(props) {
   return (
     <Typography
@@ -39,29 +39,36 @@ function Copyright(props) {
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#0C4D29',
+      main: "#0C4D29",
     },
     secondary: {
-      main: '#626262',
+      main: "#626262",
     },
   },
 });
 
 export default function SignIn() {
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    const details = {
+      email: data.get("email"),
+      password: data.get("password"),
+    };
+    const headers = { 
+      'Cookies': cookies.getAll(),
+      'Content-type': 'application/json'
+    };
+    console.log(headers)
     axios
-      .post("http://127.0.0.1:8000/internsystem/login/", {
-        email: data.get("email"),
-        password: data.get("password"),
-        config: { headers: {'Content-Type': 'multipart/form-data' }},
-        xsrfHeaderName: 'X-CSRFToken',
-        xsrfCookieName: 'csrftoken',
-        headers: {"X-CSRF": cookies.get('csrftoken')}
-      })
+      .post("/api/token/", details, headers)
       .then(function (response) {
         console.log(response);
+        if (response.status === 200){
+          return navigate('/profile/')
+        }
+        localStorage.setItem("accessToken", response.accessToken);
       })
       .catch(function (error) {
         console.log(error);

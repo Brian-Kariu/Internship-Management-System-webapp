@@ -13,6 +13,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+
 
 function Copyright(props) {
   return (
@@ -35,19 +37,24 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     axios
-      .post("http://127.0.0.1:8000/auth/signup/", {
+      .post("/accounts/register/", {
         email: data.get("email"),
         password: data.get("password"),
+        date_of_birth: data.get("DOB"),
         xsrfCookieName: 'csrftoken',
         xsrfHeaderName: 'X-CSRFTOKEN',
         withCredentials: true
       })
       .then(function (response) {
         console.log(response);
+        if (response.status === 200){
+          return navigate('/signin/')
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -55,6 +62,7 @@ export default function SignUp() {
     console.log({
       email: data.get("email"),
       password: data.get("password"),
+      date: data.get("DOB")
     });
   };
 
@@ -104,7 +112,7 @@ export default function SignUp() {
                   autoComplete="family-name"
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} sm={8}>
                 <TextField
                   required
                   fullWidth
@@ -112,6 +120,16 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <TextField
+                  required
+                  fullWidth
+                  id="DOB"
+                  label="Date of Birth"
+                  name="DOB"
+                  autoComplete="DOB"
                 />
               </Grid>
               <Grid item xs={12}>

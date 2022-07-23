@@ -56,7 +56,7 @@ function Jobs() {
 
   useEffect(() => {
     async function Fetchjobs() {
-      const {data} = await axios.get('http://127.0.0.1:8000/internsystem/job/')
+      const {data} = await axios.get('/internsystem/job/')
       setJobs(data)
       console.log(data)
     }
