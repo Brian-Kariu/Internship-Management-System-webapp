@@ -77,7 +77,7 @@ export default function PrimarySearchAppBar() {
   };
 
   const Logout = () => {
-    localStorage.removeItem("accessToken");
+    localStorage.removeItem("access_token");
     return navigate('/signin/')
   };
 

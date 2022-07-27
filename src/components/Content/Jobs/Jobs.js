@@ -56,7 +56,13 @@ function Jobs() {
 
   useEffect(() => {
     async function Fetchjobs() {
-      const {data} = await axios.get('/internsystem/job/')
+      const token = localStorage.getItem("access_token");
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const {data} = await axios.get('/internsystem/job/', config)
       setJobs(data)
       console.log(data)
     }

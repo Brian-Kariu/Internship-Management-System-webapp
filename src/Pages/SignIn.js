@@ -65,10 +65,10 @@ export default function SignIn() {
       .post("/api/token/", details, headers)
       .then(function (response) {
         console.log(response);
+        localStorage.setItem("access_token", response.data.access);
         if (response.status === 200){
           return navigate('/profile/')
         }
-        localStorage.setItem("accessToken", response.accessToken);
       })
       .catch(function (error) {
         console.log(error);
@@ -76,6 +76,7 @@ export default function SignIn() {
     console.log({
       email: data.get("email"),
       password: data.get("password"),
+      token: localStorage.getItem("access_token")
     });
   };
 

@@ -8,6 +8,7 @@ import "./ProfileForm.css";
 import{ useState, useEffect } from "react";
 import axios from 'axios'
 
+
 export default function ProfileForm() {
   const [profile, setProfile] = useState([]);
   const [formProfile, setFormProfile] = useState({
@@ -23,10 +24,14 @@ export default function ProfileForm() {
     
 
   function getProfile() {
-    axios({
-        method: "GET",
-        url:"http://127.0.0.1:8000/internsystem/student/",
-        }).then((response)=>{
+    const token = localStorage.getItem("access_token");
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+    };
+    axios.get("/internsystem/student/", config)
+    .then((response)=>{
         const data = response.data
         setProfile(data)
         }).catch((error) => {
@@ -35,12 +40,13 @@ export default function ProfileForm() {
             console.log(error.response.status);
             console.log(error.response.headers);
             }
-        })}
+        })
+    }
 
     function createProfile(event) {
         axios({
             method: "POST",
-            url:"http://127.0.0.1:8000/internsystem/student/",
+            url:"/internsystem/student/",
             data:{
                 first_name: formProfile.first_name,
                 last_name: formProfile.last_name,
